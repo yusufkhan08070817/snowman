@@ -3,6 +3,7 @@ package com.example.snowtheam
 import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.graphics.Rect
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.TouchDelegate
@@ -14,7 +15,7 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var b: ActivityMainBinding
-
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivityMainBinding.inflate(layoutInflater)
@@ -26,6 +27,13 @@ class MainActivity : AppCompatActivity() {
             // hide the navigation bar.
             systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
         }
+         mediaPlayer = MediaPlayer.create(this, R.raw.music)
+
+        // Set looping to true
+        mediaPlayer.isLooping = true
+
+        // Start playing the music
+        mediaPlayer.start()
         // Adjust touch delegate for b.snowman to expand touch area
         b.snowman.post {
             val rect = Rect()
@@ -61,5 +69,11 @@ class MainActivity : AppCompatActivity() {
             snowAnimator.setTarget(child)
             snowAnimator.start()
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Release the MediaPlayer when the activity is destroyed
+        mediaPlayer.release()
     }
 }
