@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:valueFrom="-10"
+        android:valueTo="10"
+        android:pivotX="100%"
+        android:pivotY="0"
+        android:propertyName="rotationY"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:duration="1000"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        />
+    <objectAnimator
+        android:valueFrom="-100dp"
+        android:valueTo="500dp"
+        android:propertyName="translationX"
+        android:duration="50000"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"/>
+</set>
